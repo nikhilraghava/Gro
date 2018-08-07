@@ -34,10 +34,15 @@ public class MainActivity extends AppCompatActivity {
     TextToSpeech tts;
     int result;
 
+    RegexEngine regexEngine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Pass the application context to the regex engine
+        regexEngine = new RegexEngine(getApplicationContext());
 
         // Link the XML elements to Java code
         txtSpeechInput = findViewById(R.id.txtSpeechInput);
@@ -65,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+
 
     // Prompt speech input
     private void promptSpeechInput() {
@@ -102,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
                     txtSpeechInput.setText(result.get(0));
                     // Set the resulting string to the global variable
                     textSpoken = result.get(0);
-                    // TODO: Pass the utterance to the regex engine
+                    // Pass the utterance to the regex engine
+                    speakOut(regexEngine.coreUttProcessor(textSpoken));
                 }
             }
         }

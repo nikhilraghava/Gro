@@ -29,7 +29,7 @@ public class ScheduleManager {
         calendar.set(Calendar.MINUTE, minutes);
         Intent myIntent = new Intent(schContext.getApplicationContext(), ScheduleReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(schContext, 0, myIntent, 0);
-        schAlarm.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+        schAlarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     // Cancel the set schedules

@@ -10,14 +10,12 @@ import java.util.Calendar;
 public class ScheduleManager {
 
     // The alarm manager is a global variable so all methods can access it
-    AlarmManager schAlarm;
+    private AlarmManager schAlarm;
     // Global variable for the context the alarm is set in
-    Context schContext;
-    // Global variable for the pending intent object
-    private PendingIntent pendingIntent;
+    private Context schContext;
 
     // Constructor that takes in alarm manager as a parameter from the MainActivity
-    public ScheduleManager(AlarmManager schAlarm, Context schContext) {
+    ScheduleManager(AlarmManager schAlarm, Context schContext) {
         this.schAlarm = schAlarm;
         this.schContext = schContext;
     }
@@ -28,12 +26,14 @@ public class ScheduleManager {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minutes);
         Intent myIntent = new Intent(schContext.getApplicationContext(), ScheduleReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(schContext, 0, myIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(schContext, 100, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         schAlarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     // Cancel the set schedules
     public void cancelSchedule() {
+        Intent myIntent = new Intent(schContext.getApplicationContext(), ScheduleReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(schContext.getApplicationContext(), 100, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         schAlarm.cancel(pendingIntent);
     }
 }

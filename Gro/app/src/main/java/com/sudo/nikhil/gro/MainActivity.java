@@ -22,18 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
     // Interfaces
     private TextView txtSpeechInput;
-    private ImageButton btnSpeak;
 
     // Speech to Text input code
     private final int REQ_CODE_SPEECH_INPUT = 100;
-
-    // String to be spoken by the user
-    private String textSpoken;
 
     // Text to speech variables
     TextToSpeech tts;
     int result;
 
+    // Regex engine object
     RegexEngine regexEngine;
 
     @Override
@@ -46,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Link the XML elements to Java code
         txtSpeechInput = findViewById(R.id.txtSpeechInput);
-        btnSpeak = findViewById(R.id.btnSpeak);
+        ImageButton btnSpeak = findViewById(R.id.btnSpeak);
 
         // Set onClickListener for button
         btnSpeak.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     // Set the resulting string to the text label
                     txtSpeechInput.setText(result.get(0));
                     // Set the resulting string to the global variable
-                    textSpoken = result.get(0);
+                    String textSpoken = result.get(0);
                     // Pass the utterance to the regex engine
                     speakOut(regexEngine.coreUttProcessor(textSpoken));
                 }

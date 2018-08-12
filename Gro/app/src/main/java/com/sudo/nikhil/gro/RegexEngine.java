@@ -16,9 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.content.Context.ALARM_SERVICE;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import java.util.regex.*;
+import static android.content.Context.ALARM_SERVICE;
 
 public class RegexEngine {
 

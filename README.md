@@ -1,2 +1,4 @@
 # Gro
-Gro Android application
+
+Gro is an intuitive voice-controlled smart gardening system targeting the Android Operating System. It aims to ease the hassle of daily continued management of urban gardens in cities using an Internet-of-Things (IoT) enabled irrigation system and the Gro Android application. Users can install the Gro Android app on their Android smartphones and remotely manage and monitor their garden using simple voice commands. The application also allows the users to set schedules which will trigger the IoT enabled irrigation system to automatically water the plants on a daily basis at a user-defined time.
+Gro’s user interface is minimalistic and easy to use. Using the application is as simple as talking to someone because users don’t have to go through the trouble of learning to navigate the user interface.
